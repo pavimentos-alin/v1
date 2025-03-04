@@ -1,0 +1,20 @@
+
+main {
+  @apply w-full max-w-screen-xl mx-auto p-1 pt-0;
+}
+
+header {
+  @apply bg-white shadow p-6 flex justify-between items-center fixed top-0 left-0 w-full h-16 z-50;
+}
+
+section {
+  @apply py-14 pb-4;
+}
+
+#hero {
+  @apply py-24  pb-4;
+}
+
+header nav {
+  @apply flex flex-wrap gap-2 justify-end;
+}
