@@ -1,31 +1,30 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import servicesData from "@/data/services.json"; // Importamos el JSON directamente
 
 export default function Services() {
   const [services, setServices] = useState([]);
 
-  useEffect(() => {
-    fetch("../src/data/services.json")
-      .then((response) => response.json())
-      .then((data) => {
-        const images = Object.values(
-          import.meta.glob("/src/assets/images/services/*.{jpg,jpeg,png,webp}", { eager: true })
-        ).map((img) => img.default);
-
-        const servicesWithImages = data.map(service => ({
-          ...service,
-          images: filterImagesByPrefix(images, service.imageNameInit),
-          currentImageIndex: 0
-        }));
-        setServices(servicesWithImages);
-      })
-      .catch(error => console.error("Error loading services:", error));
-  }, []);
+  // Cargar imágenes desde la carpeta de assets
+  const images = Object.values(
+    import.meta.glob("/src/assets/images/services/*.{jpg,jpeg,png,webp}", { eager: true })
+  ).map((img) => img.default);
 
   const filterImagesByPrefix = (allImages, prefix) => {
     const filtered = allImages.filter(img => img.includes(`/services/${prefix}`));
     return filtered.length > 0 ? filtered : ["/src/assets/images/placeholder.png"];
   };
+
+  useEffect(() => {
+    // Como el JSON ya está importado, lo usamos directamente sin fetch
+    const servicesWithImages = servicesData.map(service => ({
+      ...service,
+      images: filterImagesByPrefix(images, service.imageNameInit),
+      currentImageIndex: 0
+    }));
+
+    setServices(servicesWithImages);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
