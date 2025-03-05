@@ -7,10 +7,11 @@ export default function Services() {
 
   // Cargar imágenes desde la carpeta de assets
   const images = Object.values(
-    import.meta.glob("/images/services/*.{jpg,jpeg,png,webp}", { eager: true })
+    import.meta.glob("../assets/images/services/*.{jpg,jpeg,png,webp}", { eager: true })
   ).map((img) => img.default);
 
   const filterImagesByPrefix = (allImages, prefix) => {
+    console.log("IMAGENES CARGADAS: ---->"+ allImages.length)
     const filtered = allImages.filter(img => img.includes(`/services/${prefix}`));
     return filtered.length > 0 ? filtered : ["/images/placeholder.png"];
   };
