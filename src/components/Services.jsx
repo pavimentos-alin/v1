@@ -5,7 +5,7 @@ export default function Services() {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch("@/data/services.json")
+    fetch("../src/data/services.json")
       .then((response) => response.json())
       .then((data) => {
         const images = Object.values(
