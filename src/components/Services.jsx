@@ -12,7 +12,14 @@ export default function Services() {
 
   const filterImagesByPrefix = (allImages, prefix) => {
     console.log("IMAGENES CARGADAS: ---->"+ allImages.length)
+    Object.values(allImages).forEach((img, index) => {
+      console.log(`NOMBRE Imagen ${index + 1}:`, img);
+    });
+  
     const filtered = allImages.filter(img => img.includes(`/services/${prefix}`));
+
+    console.log("IMAGENES FILTRADAS: ---->"+ filtered.length)
+
     return filtered.length > 0 ? filtered : ["/images/placeholder.png"];
   };
 
