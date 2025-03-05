@@ -16,7 +16,7 @@ export default function Services() {
       console.log(`NOMBRE Imagen ${index + 1}:`, img);
     });
   
-    const filtered = allImages.filter(img => img.includes(`/services/${prefix}`));
+    const filtered = allImages.filter(img => img.includes(`${prefix}`));
 
     console.log("IMAGENES FILTRADAS: ---->"+ filtered.length)
 
