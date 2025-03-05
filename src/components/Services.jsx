@@ -7,7 +7,7 @@ export default function Services() {
 
   // Cargar imágenes desde la carpeta de assets
   const images = Object.values(
-    import.meta.glob("../assets/images//services/*.{jpg,jpeg,png,webp}", { eager: true })
+    import.meta.glob("../assets/images/services/*.{jpg,jpeg,png,webp}", { eager: true })
   ).map((img) => img.default);
 
   const filterImagesByPrefix = (allImages, prefix) => {
