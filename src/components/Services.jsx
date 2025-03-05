@@ -12,7 +12,7 @@ export default function Services() {
 
   const filterImagesByPrefix = (allImages, prefix) => {
     const filtered = allImages.filter(img => img.includes(`/services/${prefix}`));
-    return filtered.length > 0 ? filtered : ["../assets/images/images/placeholder.png"];
+    return filtered.length > 0 ? filtered : ["../assets/images/placeholder.png"];
   };
 
   useEffect(() => {
