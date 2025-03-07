@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, Image as ImageIcon } from "lucide-react";
+import { Star } from "lucide-react";
 import reviewsData from "@/data/googleReviews.json"; // Importamos el JSON directamente
 
 const StarRating = ({ rating }) => {
@@ -28,6 +29,23 @@ const StarRating = ({ rating }) => {
       </svg>
     </div>
   );
+};
+StarRating.propTypes = {
+  rating: PropTypes.number.isRequired,
+};
+
+const ReviewsSummary = ({ rating, totalReviews }) => {
+  return (
+    <div className="flex items-center gap-2">
+      <StarRating rating={rating} />
+      <span className="text-gray-700 text-lg">{rating.toFixed(1)}</span>
+      <span className="text-gray-500 text-sm">({totalReviews} reseñas)</span>
+    </div>
+  );
+};
+ReviewsSummary.propTypes = {
+  rating: PropTypes.number.isRequired,
+  totalReviews: PropTypes.number.isRequired,
 };
 
 const Reviews = () => {
@@ -58,10 +76,15 @@ const Reviews = () => {
     }
   };
 
+  const googleMapsReviewUrl = "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4"; // Reemplaza con el placeid correcto de tu empresa
+
   return (
-    <div className="container mx-auto px-4 py-8 relative bg-gray-100 rounded-b-lg shadow-lg border-r border-l border-bg border-gray-200">
-      <h2 className="text-3xl font-bold text-center mb-6">Opiniones de Clientes</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <section className="bg-gray-100 text-center p-0 border-r border-l pt-8 pb-4 pl-8 pr-8 shadow-md relative">
+      <div className="flex justify-between items-center mb-6">
+        <h3 className="text-3xl font-bold">Opiniones de los clientes</h3>
+        <ReviewsSummary rating={reviewsData.rating} totalReviews={reviewsData.user_ratings_total} />
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {currentReviews.map((review, index) => (
           <Card key={index} className="shadow-lg rounded-xl p-4 flex flex-col h-full bg-white">
             <CardContent className="flex flex-col h-full">
@@ -113,7 +136,22 @@ const Reviews = () => {
           ⟩
         </button>
       </div>
-    </div>
+
+      <div className="mt-6">
+        <a
+          href={googleMapsReviewUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-blue-500 text-white px-4 py-2 rounded-full transition-all duration-300 ease-in-out hover:bg-blue-600"
+        >
+          <div className="flex items-center">
+            <div className="OyjIsf zemfqc"></div>
+            <span className="Cw1rxd google-symbols" aria-hidden="true" style={{ fontSize: "18px" }}></span>
+            <span className="GMtm7c fontTitleSmall ml-2">Escribir una reseña</span>
+          </div>
+        </a>
+      </div>
+    </section>
   );
 };
 
