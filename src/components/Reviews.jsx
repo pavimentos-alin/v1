@@ -1,34 +1,120 @@
 import { useEffect, useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Star, Image as ImageIcon } from "lucide-react";
+import reviewsData from "@/data/googleReviews.json"; // Importamos el JSON directamente
 
-export default function Reviews() {
-  const [iframeHeight, setIframeHeight] = useState("640px");
-
-  useEffect(() => {
-    const handleMessage = (event) => {
-      // Verifica que el mensaje proviene de tu dominio en `elf.site`
-      if (event.origin.includes("elf.site")) {
-        const newHeight = event.data?.height;
-        if (newHeight) {
-          setIframeHeight(`${newHeight}px`);
-        }
-      }
-    };
-
-    window.addEventListener("message", handleMessage);
-    return () => window.removeEventListener("message", handleMessage);
-  }, []);
+const StarRating = ({ rating }) => {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating - fullStars >= 0.5;
 
   return (
-    <section id="reviews" className="py-16 text-center w-full bg-gray-100 border-l border-r">
-      <div className="mt-6">
-        <iframe
-          src="https://4827e2c83b8847cfba5661d41d525afd.elf.site"
-          className="w-full"
-          style={{ height: iframeHeight }}
-          allowFullScreen=""
-          loading="lazy"
-        ></iframe>
-      </div>
-    </section>
+    <div className="flex gap-1 text-yellow-500">
+      {[...Array(5)].map((_, i) => {
+        if (i < fullStars) {
+          return <Star key={i} size={16} fill="#FFD700" stroke="none" />;
+        } else if (i === fullStars && hasHalfStar) {
+          return <Star key={i} size={16} fill="url(#half)" stroke="none" />;
+        } else {
+          return <Star key={i} size={16} fill="#E5E7EB" stroke="none" />;
+        }
+      })}
+      <svg width="0" height="0">
+        <defs>
+          <linearGradient id="half" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="50%" style={{ stopColor: "#FFD700", stopOpacity: 1 }} />
+            <stop offset="50%" style={{ stopColor: "#E5E7EB", stopOpacity: 1 }} />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
   );
-}
+};
+
+const Reviews = () => {
+  const [reviews, setReviews] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const reviewsPerPage = 4;
+
+  useEffect(() => {
+    // Como el JSON ya está importado, lo usamos directamente sin fetch
+    setReviews(reviewsData.reviews || []);
+  }, []);
+
+  const indexOfLastReview = currentPage * reviewsPerPage;
+  const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
+  const currentReviews = reviews.slice(indexOfFirstReview, indexOfLastReview);
+
+  const totalPages = Math.ceil(reviews.length / reviewsPerPage);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  return (
+    <div className="container mx-auto px-4 py-8 relative bg-gray-100 rounded-b-lg shadow-lg border-r border-l border-bg border-gray-200">
+      <h2 className="text-3xl font-bold text-center mb-6">Opiniones de Clientes</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {currentReviews.map((review, index) => (
+          <Card key={index} className="shadow-lg rounded-xl p-4 flex flex-col h-full bg-white">
+            <CardContent className="flex flex-col h-full">
+              <div className="flex items-center gap-4">
+                <img
+                  src={review.profile_photo_url || "/default-user.png"}
+                  alt={review.author_name || "Usuario desconocido"}
+                  className="w-12 h-12 rounded-full border"
+                />
+                <div>
+                  <h3 className="text-lg font-semibold">{review.author_name || "Anónimo"}</h3>
+                  <StarRating rating={review.rating || 0} />
+                  <p className="text-xs text-gray-500">{review.relative_time_description || "Fecha desconocida"}</p>
+                </div>
+              </div>
+              <p className="text-gray-600 mt-2 flex-grow">{review.text || "Sin comentario."}</p>
+              {review.photos && review.photos.length > 0 && (
+                <div className="mt-4 flex gap-2">
+                  {review.photos.map((photo, i) => (
+                    <img
+                      key={i}
+                      src={photo.photo_reference ? `https://example.com/photo/${photo.photo_reference}` : "/placeholder.jpg"}
+                      alt="Review Image"
+                      className="w-16 h-16 object-cover rounded-lg border"
+                    />
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
+        <button
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+          className="bg-gray-800 bg-opacity-70 w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300 ease-in-out hover:bg-black hover:bg-opacity-100 hover:shadow-lg hover:scale-110 text-white text-lg leading-none text-center disabled:opacity-50"
+        >
+          ⟨
+        </button>
+      </div>
+      <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="bg-gray-800 bg-opacity-70 w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300 ease-in-out hover:bg-black hover:bg-opacity-100 hover:shadow-lg hover:scale-110 text-white text-lg leading-none text-center disabled:opacity-50"
+        >
+          ⟩
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Reviews;

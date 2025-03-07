@@ -1,0 +1,72 @@
+{
+    "reviews": [
+      {
+        "author_name": "Juan Pérez",
+        "author_url": "https://plus.google.com/123456789",
+        "language": "es",
+        "profile_photo_url": "https://example.com/photo.jpg",
+        "relative_time_description": "Hace 2 días",
+        "text": "Excelente servicio, recomiendo el plato estrella!",
+        "rating": 5,
+        "time": 1694000000,
+        "photos": [
+          {
+            "height": 1080,
+            "html_attributions": [],
+            "photo_reference": "CmRaAAAA...",
+            "width": 1920
+          }
+        ]
+      },
+      {
+        "author_name": "Ana López",
+        "author_url": "https://plus.google.com/987654321",
+        "language": "en",
+        "profile_photo_url": "https://example.com/photo2.jpg",
+        "relative_time_description": "Hace 1 semana",
+        "text": "Great place, but the wait was long.",
+        "rating": 4.5,
+        "time": 1693000000,
+        "photos": []
+      },
+      {
+        "author_name": "Carlos Gómez",
+        "profile_photo_url": "https://example.com/carlos.jpg",
+        "rating": 3.8,
+        "text": "Bueno, pero podría mejorar la limpieza.",
+        "time": 1692500000,
+        "photos": [
+          {
+            "photo_reference": "ABC123..."
+          }
+        ]
+      },
+      {
+        "author_name": "Pedro Lujan Sánchez",
+        "author_url": "https://www.google.com/maps/contrib/118346974932302019299",
+        "profile_photo_url": "https://example.com/photos/user4.jpg",
+        "rating": 3.3,
+        "relative_time_description": "hace 1 mes",
+        "text": "La comida estaba bien, pero el servicio podría mejorar. Los precios son un poco elevados para lo que ofrecen.",
+        "time": 1642271600,
+        "photos": []
+      },
+      {
+        "author_name": "Laura Martínez",
+        "author_url": "https://www.google.com/maps/contrib/109382764332523471672",
+        "profile_photo_url": "https://example.com/photos/user5.jpg",
+        "rating": 5,
+        "relative_time_description": "hace 2 días",
+        "text": "Increíble experiencia gastronómica. Probé el menú degustación y cada plato fue una delicia. El servicio impecable.",
+        "time": 1646158800,
+        "photos": [
+          {
+            "photo_reference": "Aap_uEA9ExR0E9cVgQrJ5ZdYtQKMVTsvhxP3hWGTnfm_p",
+            "height": 1000,
+            "width": 1500,
+            "html_attributions": ["<a href=\"https://maps.google.com/maps/contrib/109382764332523471672\">Laura Martínez</a>"]
+          }
+        ]
+      }
+    ]
+  }
