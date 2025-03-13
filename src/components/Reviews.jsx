@@ -51,11 +51,26 @@ ReviewsSummary.propTypes = {
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const reviewsPerPage = 4;
+  const [reviewsPerPage, setReviewsPerPage] = useState(4);
 
   useEffect(() => {
     // Como el JSON ya está importado, lo usamos directamente sin fetch
     setReviews(reviewsData.reviews || []);
+
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setReviewsPerPage(1); // 1 columna
+      } else if (window.innerWidth < 1024) {
+        setReviewsPerPage(2); // 2 columnas
+      } else {
+        setReviewsPerPage(4); // 4 columnas
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Llamar al cargar la página
+
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const indexOfLastReview = currentPage * reviewsPerPage;
