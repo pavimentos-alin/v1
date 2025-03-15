@@ -2,7 +2,8 @@ import { Button } from "./ui/button.jsx";
 
 export default function Hero() {
   return (
-    <section id="hero" className="w-full">
+    <div style={{ marginTop: '20px' }}>
+    <section id="hero" className="w-full hidden">
       <div  className="bg-gray-100 p-4 border rounded-lg shadow-lg">
       <h2 className="text-4xl font-bold">Especialistas en pavimentos, muros y drenajes</h2>
       <p className="mt-4 text-lg">Ofrecemos soluciones duraderas y estéticas. Háganos su consulta sin compromiso:</p>
@@ -15,5 +16,6 @@ export default function Hero() {
       </form>
       </div>
     </section>
+    </div>
   );
 }

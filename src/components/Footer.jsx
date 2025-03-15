@@ -4,9 +4,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 mb-8">
         <div className="flex flex-col items-center text-center justify-center">
           <h3 className="text-xl font-bold">Pavimentos Alin</h3>
-          <p>Dirección: Calle Ficticia 123, Ciudad, País</p>
-          <p>Teléfono: +34 123 456 789</p>
-          <p>Email: contacto@pavimentosalin.com</p>
+          <p>Teléfono: +34 643 03 90 07</p>
+          <p>Email: info@hormigonarte.com</p>
         </div>
         <div className="w-full md:w-3/3 flex justify-center md:justify-end items-center">
         <iframe

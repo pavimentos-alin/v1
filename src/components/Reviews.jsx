@@ -91,7 +91,8 @@ const Reviews = () => {
     }
   };
 
-  const googleMapsReviewUrl = "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4"; // Reemplaza con el placeid correcto de tu empresa
+  //const googleMapsReviewUrl = "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4"; // Reemplaza con el placeid correcto de tu empresa
+  const googleMapsReviewUrl = "https://www.google.es/maps/place/Pavimentos+Alin/@35.225731,-17.424399,5z/data=!4m8!3m7!1s0xd42497b2e249b21:0xcfbe4d93e7e746e8!8m2!3d35.67445!4d-6.8143!9m1!1b1!16s%2Fg%2F11sx4mh4c8?entry=ttu&g_ep=EgoyMDI1MDMxMi4wIKXMDSoASAFQAw%3D%3D";
 
   return (
     <section className="bg-gray-100 text-center p-0 border-r border-l pt-8 pb-4 pl-8 pr-8 shadow-md relative">
