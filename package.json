@@ -46,6 +46,7 @@
     "react-router-dom": "^6.29.0",
     "recast": "^0.23.9",
     "recharts": "^2.15.1",
+    "resend": "^4.1.2",
     "rimraf": "^5.0.10",
     "shadcn-ui": "^0.8.0",
     "tailwind-merge": "^3.0.2",
