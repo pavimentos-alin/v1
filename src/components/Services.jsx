@@ -11,14 +11,14 @@ export default function Services() {
   ).map((img) => img.default);
 
   const filterImagesByPrefix = (allImages, prefix) => {
-    console.log("IMAGENES CARGADAS: ---->"+ allImages.length)
-    Object.values(allImages).forEach((img, index) => {
-      console.log(`NOMBRE Imagen ${index + 1}:`, img);
-    });
+    //console.log("IMAGENES CARGADAS: ---->"+ allImages.length)
+    // Object.values(allImages).forEach((img, index) => {
+      //console.log(`NOMBRE Imagen ${index + 1}:`, img);
+    // });
   
     const filtered = allImages.filter(img => img.includes(`${prefix}`));
 
-    console.log("IMAGENES FILTRADAS: ---->"+ filtered.length)
+    //console.log("IMAGENES FILTRADAS: ---->"+ filtered.length)
 
     return filtered.length > 0 ? filtered : ["/images/placeholder.png"];
   };
@@ -49,7 +49,7 @@ export default function Services() {
   }, [services]);
 
   return (
-    <section id="services">
+    <section id="services" className="pt-6">
       <h3 className="text-3xl font-bold text-center mb-6">Nuestros Servicios</h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {services.map((service, index) => (

@@ -43,16 +43,16 @@ export default function About() {
   }, []);
 
   const createPages = (imageObjects) => {
-    console.log('numero de imagenes ->' + imageObjects.length);
+    // console.log('numero de imagenes ->' + imageObjects.length);
     const pages = [];
     let colPage = 0;
     let page = [];
     for (let i = 0; i < imageObjects.length; i++) {
-      console.log('imagen ->' + i);
+      //console.log('imagen ->' + i);
       // Si agregar la imagen supera el límite, se guarda la página y se inicia otra
       if (colPage + imageObjects[i].type > 3) {
         pages.push([...page]);  // Clonar la página antes de reiniciar
-        console.log('Página añadida ->', pages.length);
+        //console.log('Página añadida ->', pages.length);
         page = []; // Reiniciar la página
         colPage = 0; // Reiniciar el contador
       }
@@ -63,7 +63,7 @@ export default function About() {
     if (page.length > 0) {
       pages.push([...page]);
     }
-    console.log('Total de páginas creadas ->', pages.length);
+    //console.log('Total de páginas creadas ->', pages.length);
     return pages;
   };
 
