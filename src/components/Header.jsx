@@ -13,8 +13,11 @@ export default function Header() {
     <header className="bg-white shadow-lg p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50">
       <div className="flex items-center space-x-2">
         <img src={logo} alt="Pavimentos Alin" className="h-16 w-auto drop-shadow-2xl transform scale-100" />
-        <h1 className="text-2xl font-bold sr-only">Pavimentos Alin</h1>
       </div>
+      <span className="absolute left-1/2 transform -translate-x-1/2 scale-y-125 text-xl sm:text-2xl font-light tracking-wide text-gray-800 scale-x-125">
+  Pavimentos Alin
+</span>
+
       <nav className="flex items-center space-x-4">
         <div className="hidden sm:flex items-center space-x-4">
           <a href="https://www.facebook.com/100083556156993" target="_blank" rel="noopener noreferrer">

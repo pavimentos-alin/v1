@@ -4,8 +4,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 mb-8">
         <div className="flex flex-col items-center text-center justify-center">
           <h3 className="text-xl font-bold">Pavimentos Alin</h3>
-          <p>Teléfono: +34 643 03 90 07</p>
-          <p>Email: info@hormigonarte.com</p>
+          <p>
+  Teléfono: <a href="tel:+34643039007" className="underline hover:text-gray-300">+34 643 03 90 07</a>
+</p>
+<p>
+  Email: <a href="mailto:info@hormigonarte.com" className="underline hover:text-gray-300">info@hormigonarte.com</a>
+</p>
+
         </div>
         <div className="w-full md:w-3/3 flex justify-center md:justify-end items-center">
         <iframe

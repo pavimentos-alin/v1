@@ -6,9 +6,11 @@ export default function Hero() {
   const [email, setEmail] = useState("");
   const [mensaje, setMensaje] = useState("");
   const [enviado, setEnviado] = useState(false);
+  const [cargando, setCargando] = useState(false); // NUEVO
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setCargando(true); // Mostrar spinner
 
     const response = await fetch("/api/sendEmail", {
       method: "POST",
@@ -18,6 +20,8 @@ export default function Hero() {
       body: JSON.stringify({ nombre, email, mensaje }),
     });
 
+    setCargando(false); // Ocultar spinner
+
     if (response.ok) {
       setEnviado(true);
     } else {
@@ -26,7 +30,7 @@ export default function Hero() {
   };
 
   const reiniciarFormulario = (e) => {
-    e.preventDefault(); // Previene cualquier intento de submit accidental
+    e.preventDefault();
     setNombre("");
     setEmail("");
     setMensaje("");
@@ -40,8 +44,7 @@ export default function Hero() {
           Especialistas en pavimentos, muros y drenajes
         </h2>
         <p className="mt-4 text-lg">
-          Ofrecemos soluciones duraderas y estéticas. Háganos su consulta sin
-          compromiso:
+          Ofrecemos soluciones duraderas y estéticas. Háganos su consulta sin compromiso:
         </p>
         <form onSubmit={handleSubmit} className="mt-6 flex flex-col items-left">
           <input
@@ -51,7 +54,7 @@ export default function Hero() {
             placeholder="Nombre"
             className="p-2 border rounded mb-2 w-80"
             required
-            disabled={enviado}
+            disabled={enviado || cargando}
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
           />
@@ -62,7 +65,7 @@ export default function Hero() {
             placeholder="Mail"
             className="p-2 border rounded mb-2 w-192"
             required
-            disabled={enviado}
+            disabled={enviado || cargando}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -72,7 +75,7 @@ export default function Hero() {
             placeholder="Consulta"
             className="p-2 border rounded mb-2 w-192"
             required
-            disabled={enviado}
+            disabled={enviado || cargando}
             value={mensaje}
             onChange={(e) => setMensaje(e.target.value)}
           ></textarea>
@@ -90,6 +93,10 @@ export default function Hero() {
                   ¡consulta enviada! Te contestamos muy pronto.
                 </p>
               </>
+            ) : cargando ? (
+              <div className="w-80 ml-auto flex justify-center items-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600"></div>
+              </div>
             ) : (
               <Button
                 type="submit"
