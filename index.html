@@ -10,6 +10,13 @@
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      
+      // ✅ Consentimiento predeterminado (antes de que el usuario acepte)
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        analytics_storage: 'denied'
+      });
+      
       gtag('js', new Date());
 
       gtag('config', 'AW-666185827');
