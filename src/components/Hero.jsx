@@ -29,7 +29,7 @@ export default function Hero() {
       if (window.gtag) {
         window.gtag("event", "conversion", {
           send_to: "AW-666185827/2pMfCJCL0LEaEOPg1L0C",
-          value: 0.0,
+          value: 1.0,
           currency: "EUR",
         });
       }
