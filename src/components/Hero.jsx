@@ -24,6 +24,16 @@ export default function Hero() {
 
     if (response.ok) {
       setEnviado(true);
+
+      // ✅ Disparar conversión de Google Ads
+      if (window.gtag) {
+        window.gtag("event", "conversion", {
+          send_to: "AW-666185827/2pMfCJCL0LEaEOPg1L0C",
+          value: 0.0,
+          currency: "EUR",
+        });
+      }
+
     } else {
       alert("Hubo un error al enviar el mensaje. Inténtelo de nuevo.");
     }
