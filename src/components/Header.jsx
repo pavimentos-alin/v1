@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FaFacebook, FaInstagram, FaPhone, FaWhatsapp, FaTelegram, FaMapMarkerAlt, FaBars, FaTimes } from "react-icons/fa";
 import logo from "../assets/images/logo_transparente_pavimentos_alin.png";
+import { Link } from "react-router-dom";
+
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,12 +13,12 @@ export default function Header() {
 
   return (
     <header className="bg-white shadow-lg p-6 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-      <div className="flex items-center space-x-2">
-        <img src={logo} alt="Pavimentos Alin" className="h-16 w-auto drop-shadow-2xl transform scale-100" />
-      </div>
-      <span className="absolute left-1/2 transform -translate-x-1/2 scale-y-125 text-xl sm:text-2xl font-light tracking-wide text-gray-800 scale-x-125">
-  Pavimentos Alin
-</span>
+      <Link to="/" className="flex items-center space-x-2 group">
+        <img src={logo} alt="Pavimentos Alin" className="h-16 w-auto drop-shadow-2xl transform scale-100 transition group-hover:scale-105" />
+      </Link>
+      <Link to="/" className="absolute left-1/2 transform -translate-x-1/2 scale-y-125 text-xl sm:text-2xl font-light tracking-wide text-gray-800 scale-x-125 hover:text-black transition hover:font-semibold">Pavimentos Alin</Link>
+
+
 
       <nav className="flex items-center space-x-4">
         <div className="hidden sm:flex items-center space-x-4">

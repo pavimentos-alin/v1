@@ -1,46 +1,26 @@
 import './App.css'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
+import CookieConsent from "react-cookie-consent";
 
 import Header from "./components/Header.jsx";
-import Space from "./components/ui/Space.jsx";
 import Hero from "./components/Hero.jsx";
 import Services from "./components/Services.jsx";
 import About from "./components/About.jsx";
 import Reviews from "./components/Reviews.jsx";
 import Footer from "./components/Footer.jsx";
-import CookieConsent from "react-cookie-consent";
-
-// Nuevas páginas
-import Pavimentos from './pages/Pavimentos.jsx';
-import Muros from './pages/Muros.jsx';
-import Drenajes from './pages/Drenajes.jsx';
-
-function Home() {
-  return (
-    <>
-      <Space />
-      <Hero />
-      <Services />
-      <About />
-      <Reviews />
-    </>
-  );
-}
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <div>
       <Header />
       <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/pavimentos" element={<Pavimentos />} />
-          <Route path="/muros" element={<Muros />} />
-          <Route path="/drenajes" element={<Drenajes />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <Hero />
+        <Services />
+        <About />
+        <Reviews />
       </main>
       <Footer />
+      {/* ✅ Banner de cookies con lógica para Consent Mode */}
       <CookieConsent
         location="bottom"
         buttonText="Aceptar"
@@ -63,7 +43,7 @@ export default function App() {
         }}
       >
         Usamos cookies para mejorar tu experiencia. Acepta o rechaza según prefieras.
-      </CookieConsent>
-    </BrowserRouter>
+      </CookieConsent>    
+    </div>
   );
 }

@@ -64,7 +64,11 @@ export default function Services() {
                 alt={service.title} 
                 className="w-full max-h-90 object-fill rounded"
               />
-              <p className="text-gray-700 mt-4 text-center">{service.description}</p>
+              <div className="text-gray-700 mt-4 text-center">
+                {service.description.split('<br/>').map((paragraph, idx) => (
+                  <p key={idx} className="mb-4">{paragraph}</p>
+                ))}
+              </div>
             </CardContent>
           </Card>
         ))}

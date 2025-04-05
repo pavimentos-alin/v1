@@ -11,10 +11,6 @@ section {
   @apply py-14 pb-4;
 }
 
-#hero {
-  @apply py-24  pb-4;
-}
-
 header nav {
   @apply flex flex-wrap gap-2 justify-end;
 }

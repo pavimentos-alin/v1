@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Button } from "./ui/button.jsx";
+import { Link } from "react-router-dom";
+
 
 export default function Hero() {
   const [nombre, setNombre] = useState("");
@@ -48,11 +50,14 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="w-full">
+    <section id="hero" className="w-full  pt-4">
       <div className="bg-gray-100 p-4 border rounded-lg shadow-lg">
-        <h2 className="text-4xl font-bold">
-          Especialistas en pavimentos, muros y drenajes
-        </h2>
+      <h2 className="text-4xl font-bold">
+        Especialistas en{" "}
+        <Link to="/pavimentos" className="text-inherit border-b border-neutral-600 border-dotted hover:border-none hover:bg-neutral-300 hover:rounded-sm hover:px-1 hover:no-underline transition">pavimentos</Link>,{" "}
+        <Link to="/muros" className="text-inherit border-b border-neutral-600 border-dotted hover:border-none hover:bg-neutral-300 hover:rounded-sm hover:px-1 hover:no-underline transition">muros</Link> y{" "}
+        <Link to="/drenajes" className="text-inherit border-b border-neutral-600 border-dotted hover:border-none hover:bg-neutral-300 hover:rounded-sm hover:px-1 hover:no-underline transition">drenajes</Link>
+      </h2>
         <p className="mt-4 text-lg">
           Ofrecemos soluciones duraderas y estéticas. Háganos su consulta sin compromiso:
         </p>
