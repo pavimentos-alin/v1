@@ -11,11 +11,11 @@ export default function ImageSlider({ jsonFile }) {
     const loadData = async () => {
       try {
         
-        const jsonModules = import.meta.glob("../../data/*.json", { eager: true });
-        const matched = jsonModules[`../../data/${jsonFile}`];
+        const jsonModules = import.meta.glob("../../data/page_*.json", { eager: true });
+        const matched = jsonModules[`../../data/page_${jsonFile}`];
 
         if (!matched) {
-          throw new Error(`No se encontró el archivo: ${jsonFile}`);
+          throw new Error(`No se encontró el archivo: page_${jsonFile}`);
         }
 
         const { title, ...textos } = matched;
