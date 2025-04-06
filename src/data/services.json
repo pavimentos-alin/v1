@@ -1,31 +1,37 @@
 [
     {
       "title": "Hormigón impreso",
+      "link":"pavimentos",
       "description": "No solo se utiliza en suelos, sino también que también se puede aplicar a paredes (hormigón impreso vertical), o escaleras para crear una completa armonía en la decoración de suelos. Otra aplicación es la variedad de hormigón rayado.<br/>El pavimento impreso realizado por nuestros profesionales le durará muchos años pues contamos con años de experiencia, y porque utilizamos los mejores materiales. Tiene muchas ventajas entre ellas que su instalación es más económica que los suelos de gres, azulejos o terracota.",
       "imageNameInit": "impreso_"
     },
     {
       "title": "Hormigón pulido",
+      "link":"pavimentos",
       "description": "Reúne unos requisitos específicos para uso en condiciones extremas (tráfico pesado, golpes, abrasión, temperaturas extremas) etc. y se instala tanto en interiores como exteriores.<br/>Los suelos de pavimentos industriales o suelos de hormigón fratasado se realizan en acabados de: pulido o semipulido, para luego aplicarle el color o pigmento deseado. Lo podemos ver en garajes, centros comerciales, gasolineras, pistas deportivas, etc. La realización es parecida en todos estos sitios, y los resultados demuestran las numerosas ventajas de esta clase de suelo.",
       "imageNameInit": "pulido_"
     },
     {
       "title": "Soleras",
+      "link":"pavimentos",
       "description": "Combina la fortaleza del hormigón con los áridos (fragmentos de roca) que encontramos en la naturaleza. Podemos mezclar el cemento con el tipo de árido que nos guste tanto en granulometría como en color.<br/>Este tipo de suelos presenta unas propiedades mecánicas y físicas que lo hacen ideal para: entornos de piscinas, patios, caminos, paseos, etc. es decir para exteriores. Los fragmentos de áridos quedan siempre visibles.",
       "imageNameInit": "soleras_"
     },
     {
       "title": "Drenajes",
+      "link":"drenajes",
       "description": "Nuestros sistemas de drenaje para zonas de exterior combinan innovación y funcionalidad. Diseñamos e instalamos soluciones que garantizan la correcta evacuación del agua, protegiendo las raíces de sus plantas y la integridad de su paisajismo. Utilizamos materiales de primera calidad y técnicas avanzadas para crear sistemas duraderos que previenen encharcamientos y erosión. Cada proyecto refleja nuestro compromiso con la excelencia, asegurando jardines saludables y hermosos durante todas las estaciones del año.",
       "imageNameInit": "drenajes_"
     },
     {
       "title": "Muros",
+      "link":"muros",
       "description": "La calidad es nuestro compromiso fundamental al construir muros de separación. Desde los cimientos, seleccionamos materiales óptimos que garantizan durabilidad excepcional. Cada etapa del proceso constructivo refleja nuestro rigor técnico y atención meticulosa a los detalles, asegurando estructuras resistentes que superan las expectativas. Nuestros muros no solo dividen espacios; representan solidez, seguridad y excelencia constructiva para nuestros clientes.",
       "imageNameInit": "muros_"
     },
     {
       "title": "Decoración",
+      "link":"pavimentos",
       "description": "Convertimos el hormigón tradicional en superficies que con la estampación de los moldes de neopreno y la aplicación de los colores imitan perfectamente a las formas como son: la pizarra, la madera, el ladrillo, el adoquín, la piedra de río, etc. Disponemos de una amplia variedad de moldes y una carta de colores.",
       "imageNameInit": "decoracion_"
     }

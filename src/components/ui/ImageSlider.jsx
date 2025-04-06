@@ -10,7 +10,6 @@ export default function ImageSlider({ jsonFile }) {
   useEffect(() => {
     const loadData = async () => {
       try {
-        
         const jsonModules = import.meta.glob("../../data/page_*.json", { eager: true });
         const matched = jsonModules[`../../data/page_${jsonFile}`];
 
@@ -44,7 +43,7 @@ export default function ImageSlider({ jsonFile }) {
         setCaptions({});
         setImages([]);
       }
-      
+
       ImageSlider.propTypes = {
         jsonFile: PropTypes.string.isRequired,
       };
@@ -74,29 +73,31 @@ export default function ImageSlider({ jsonFile }) {
       )}
 
       {current && (
-        <div className="flex flex-col items-center relative">
-          {/* Imagen actual */}
-          <img
-            src={current.src}
-            alt={current.name}
-            className="w-full object-cover max-h-[70vh] rounded-lg shadow-md"
-          />
+        <div className="flex flex-col items-center">
+          {/* Contenedor relativo solo para la imagen y botones */}
+          <div className="relative w-full">
+            <img
+              src={current.src}
+              alt={current.name}
+              className="w-full object-cover max-h-[70vh] rounded-lg shadow-md"
+            />
 
-          {/* Botón anterior */}
-          <button
-            onClick={handlePrev}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-70 w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300 ease-in-out hover:bg-black hover:bg-opacity-100 hover:shadow-lg hover:scale-110 text-white text-lg"
-          >
-            ⟨
-          </button>
+            {/* Botón anterior */}
+            <button
+              onClick={handlePrev}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-70 w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300 ease-in-out hover:bg-black hover:bg-opacity-100 hover:shadow-lg hover:scale-110 text-white text-lg"
+            >
+              ⟨
+            </button>
 
-          {/* Botón siguiente */}
-          <button
-            onClick={handleNext}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-70 w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300 ease-in-out hover:bg-black hover:bg-opacity-100 hover:shadow-lg hover:scale-110 text-white text-lg"
-          >
-            ⟩
-          </button>
+            {/* Botón siguiente */}
+            <button
+              onClick={handleNext}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-70 w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300 ease-in-out hover:bg-black hover:bg-opacity-100 hover:shadow-lg hover:scale-110 text-white text-lg"
+            >
+              ⟩
+            </button>
+          </div>
 
           {/* Puntos indicadores */}
           <div className="flex space-x-2 mt-4">
@@ -116,18 +117,18 @@ export default function ImageSlider({ jsonFile }) {
           {/* Texto de la imagen */}
           {caption && (
             <div className="mt-4 px-6 text-justify text-gray-700 text-lg">
-            {caption.split('<br/>').map((paragraph, idx) => (
-                  <p
+              {caption.split('<br/>').map((paragraph, idx) => (
+                <p
                   key={idx}
                   className="mb-4"
                   dangerouslySetInnerHTML={{
                     __html: paragraph
-                    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-                    .replace(/__(.*?)__/g, "<u>$1</u>")
+                      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+                      .replace(/__(.*?)__/g, "<u>$1</u>")
                   }}
                 />
-            ))}
-          </div>
+              ))}
+            </div>
           )}
         </div>
       )}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import servicesData from "@/data/services.json"; // Importamos el JSON directamente
 
 export default function Services() {
@@ -11,15 +12,7 @@ export default function Services() {
   ).map((img) => img.default);
 
   const filterImagesByPrefix = (allImages, prefix) => {
-    //console.log("IMAGENES CARGADAS: ---->"+ allImages.length)
-    // Object.values(allImages).forEach((img, index) => {
-      //console.log(`NOMBRE Imagen ${index + 1}:`, img);
-    // });
-  
     const filtered = allImages.filter(img => img.includes(`${prefix}`));
-
-    //console.log("IMAGENES FILTRADAS: ---->"+ filtered.length)
-
     return filtered.length > 0 ? filtered : ["/images/placeholder.png"];
   };
 
@@ -51,26 +44,25 @@ export default function Services() {
   return (
     <section id="services" className="pt-6">
       <h3 className="text-3xl font-bold text-center mb-6">Nuestros Servicios</h3>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
         {services.map((service, index) => (
-          <Card 
-            key={index} 
-            className="shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out bg-gray-100"
-          >
-            <CardContent className="p-4 flex flex-col items-center">
-              <h4 className="text-xl font-semibold text-center mt-4 mb-2">{service.title}</h4>
-              <img 
-                src={service.images[service.currentImageIndex]} 
-                alt={service.title} 
-                className="w-full max-h-90 object-fill rounded"
-              />
-              <div className="text-gray-700 mt-4 text-center">
-                {service.description.split('<br/>').map((paragraph, idx) => (
-                  <p key={idx} className="mb-4">{paragraph}</p>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          <Link to={`/${service.link}`} key={index}>
+            <Card className="h-full shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out bg-gray-100 cursor-pointer">
+              <CardContent className="h-full p-4 flex flex-col items-center">
+                <h4 className="text-xl font-semibold text-center mt-4 mb-2">{service.title}</h4>
+                <img 
+                  src={service.images[service.currentImageIndex]} 
+                  alt={service.title} 
+                  className="w-full max-h-90 object-fill rounded"
+                />
+                <div className="text-gray-700 mt-4 text-center">
+                  {service.description.split('<br/>').map((paragraph, idx) => (
+                    <p key={idx} className="mb-4">{paragraph}</p>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
         ))}
       </div>
     </section>
