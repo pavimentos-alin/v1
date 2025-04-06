@@ -1,6 +1,7 @@
 import './App.css'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
+import ScrollToTop from "@/components/ScrollToTop";
 import Header from "./components/Header.jsx";
 import Space from "./components/ui/Space.jsx";
 import Hero from "./components/Hero.jsx";
@@ -31,6 +32,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Header />
+      <ScrollToTop />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
