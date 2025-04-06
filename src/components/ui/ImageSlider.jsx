@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+
 export default function ImageSlider({ jsonFile }) {
   const [images, setImages] = useState([]);
   const [captions, setCaptions] = useState({});
@@ -9,8 +10,16 @@ export default function ImageSlider({ jsonFile }) {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const json = await import(`../../data/${jsonFile}`);
-        const { title, ...textos } = json.default;
+        
+        const jsonModules = import.meta.glob("../../data/*.json", { eager: true });
+        const matched = jsonModules[`../../data/${jsonFile}`];
+
+        if (!matched) {
+          throw new Error(`No se encontró el archivo: ${jsonFile}`);
+        }
+
+        const { title, ...textos } = matched;
+
         setCaptions(textos);
         setTitle(title || "");
 
