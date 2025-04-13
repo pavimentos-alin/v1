@@ -50,7 +50,7 @@ export default function App() {
 
   const handleDecline = () => {
     localStorage.setItem("CookieConsent", "false");
-    setCookieChoiceMade(false);
+    setCookieChoiceMade(true);
     window.gtag && window.gtag("consent", "update", {
       ad_storage: "denied",
       analytics_storage: "denied"
@@ -59,7 +59,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      {/* Fondo sin interacción mientras banner */}
+      {/* Fondo borroso y sin interacción si no hay consentimiento */}
       <div className={`${!cookieChoiceMade ? 'backdrop-blur-sm pointer-events-none' : ''}`}>
         <Header />
         <ScrollToTop />
@@ -75,7 +75,7 @@ export default function App() {
         <Footer />
       </div>
 
-      {/* Mensaje de cookies sin location, usando top-20 con Tailwind */}
+      {/* Mensaje de cookies sin location, usando top-12 con Tailwind */}
       <CookieConsent
         location=""
         disableStyles={true}
