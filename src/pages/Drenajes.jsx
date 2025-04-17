@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@dr.pogodin/react-helmet";
 import ImageSlider from "../components/ui/ImageSlider";
 import Hero from "../components/Hero.jsx";
 
@@ -15,7 +15,7 @@ export default function Drenajes() {
         <meta name="keywords" content="denajes para garajes, drenajes exteriores, drenaje de jardines, canaletas de drenaje, sistemas de drenaje, evacuación de agua" />
         <link rel="canonical" href="https://www.hormigonarte.com/drenajes" />
       </Helmet>
-      
+
       <section className="pt-24">
         <ImageSlider jsonFile="drenajes.json" />
         <Hero/>

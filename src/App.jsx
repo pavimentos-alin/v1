@@ -1,5 +1,5 @@
 import './App.css'
-import { HelmetProvider, Helmet } from "react-helmet-async";
+import { HelmetProvider, Helmet } from "@dr.pogodin/react-helmet";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import ScrollToTop from "@/components/ScrollToTop";
