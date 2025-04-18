@@ -1,6 +1,6 @@
 import './App.css'
+import { HelmetProvider, Helmet } from "@dr.pogodin/react-helmet";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 
 import ScrollToTop from "@/components/ScrollToTop";
 import Header from "./components/Header.jsx";
@@ -20,6 +20,17 @@ import Drenajes from './pages/Drenajes.jsx';
 function Home() {
   return (
     <>
+      <Helmet>
+        <title>HormigonArte | Hormigón Impreso, Pulido y Fratasado. Cemento. Decorativo para Pavimentos, Muros y Drenajes. | Calidad, Rapidez y Precios Competitivos.</title>
+        <meta
+          name="description"
+          content="Empresa especializada en hormigón, impreso, decorativo, pulido y fratasado. Realizamos pavimentos, muros y drenajes personalizados con máxima calidad, rapidez, precio competitivo y diseño."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="hormigón decorativo, pavimentos, muros, drenajes, hormigón impreso, construcción, exteriores, empresa construcción, hormigón pulido, hormigón fratasado, cemento armado, camento pulido, cemento impreso" />
+        <link rel="canonical" href="https://www.hormigonarte.com/" />
+      </Helmet>
+
       <Space />
       <Hero />
       <Services />
@@ -30,37 +41,9 @@ function Home() {
 }
 
 export default function App() {
-  const [cookieChoiceMade, setCookieChoiceMade] = useState(false);
-
-  useEffect(() => {
-    const consent = localStorage.getItem("CookieConsent");
-    if (consent === "true" || consent === "false") {
-      setCookieChoiceMade(true);
-    }
-  }, []);
-
-  const handleAccept = () => {
-    localStorage.setItem("CookieConsent", "true");
-    setCookieChoiceMade(true);
-    window.gtag && window.gtag("consent", "update", {
-      ad_storage: "granted",
-      analytics_storage: "granted"
-    });
-  };
-
-  const handleDecline = () => {
-    localStorage.setItem("CookieConsent", "false");
-    setCookieChoiceMade(true);
-    window.gtag && window.gtag("consent", "update", {
-      ad_storage: "denied",
-      analytics_storage: "denied"
-    });
-  };
-
   return (
-    <BrowserRouter>
-      {/* Fondo borroso y sin interacción si no hay consentimiento */}
-      <div className={`${!cookieChoiceMade ? 'backdrop-blur-sm pointer-events-none' : ''}`}>
+    <HelmetProvider>
+      <BrowserRouter>
         <Header />
         <ScrollToTop />
         <main>
@@ -73,24 +56,30 @@ export default function App() {
           </Routes>
         </main>
         <Footer />
-      </div>
-
-      {/* Mensaje de cookies sin location, usando top-12 con Tailwind */}
-      <CookieConsent
-        location=""
-        disableStyles={true}
-        enableDeclineButton
-        buttonText="Aceptar"
-        declineButtonText="Rechazar"
-        containerClasses="fixed top-20 left-0 w-full z-50 bg-slate-800 text-white px-4 py-3 text-sm flex flex-col md:flex-row items-center justify-between gap-2"
-        buttonWrapperClasses="flex space-x-2"
-        buttonClasses="bg-green-600 text-white text-sm px-4 py-2 rounded"
-        declineButtonClasses="bg-gray-600 text-white text-sm px-4 py-2 rounded"
-        onAccept={handleAccept}
-        onDecline={handleDecline}
-      >
-        Usamos cookies para mejorar tu experiencia. Acepta o rechaza según prefieras.
-      </CookieConsent>
-    </BrowserRouter>
+        <CookieConsent
+          location="top"
+          buttonText="Aceptar"
+          declineButtonText="Rechazar"
+          enableDeclineButton
+          style={{ background: "#2B373B" }}
+          buttonStyle={{ color: "#fff", background: "#007bff", fontSize: "13px" }}
+          declineButtonStyle={{ background: "#999", fontSize: "13px" }}
+          onAccept={() => {
+            window.gtag && window.gtag("consent", "update", {
+              ad_storage: "granted",
+              analytics_storage: "granted"
+            });
+          }}
+          onDecline={() => {
+            window.gtag && window.gtag("consent", "update", {
+              ad_storage: "denied",
+              analytics_storage: "denied"
+            });
+          }}
+        >
+          Usamos cookies para mejorar tu experiencia. Acepta o rechaza según prefieras.
+        </CookieConsent>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
