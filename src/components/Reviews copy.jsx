@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
-import reviewsData from "@/data/serpapi_googlemapsreviews.json"; // Importamos el JSON directamente
+import reviewsData from "@/data/googleReviews.json"; // Importamos el JSON directamente
 
 const StarRating = ({ rating }) => {
   const fullStars = Math.floor(rating);
@@ -54,8 +54,8 @@ const Reviews = () => {
   const [reviewsPerPage, setReviewsPerPage] = useState(4);
 
   useEffect(() => {
-    // Como el JSON ya está importado, lo usamos directamente sin fetch y solo los 20 primeros
-    setReviews((reviewsData.reviews || []).slice(0,20));
+    // Como el JSON ya está importado, lo usamos directamente sin fetch
+    setReviews(reviewsData.reviews || []);
 
     const handleResize = () => {
       if (window.innerWidth < 640) {
@@ -92,64 +92,45 @@ const Reviews = () => {
   };
 
   //const googleMapsReviewUrl = "https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4"; // Reemplaza con el placeid correcto de tu empresa
-  //const googleMapsReviewUrl = "https://www.google.es/maps/place/Pavimentos+Alin/@35.225731,-17.424399,5z/data=!4m8!3m7!1s0xd42497b2e249b21:0xcfbe4d93e7e746e8!8m2!3d35.67445!4d-6.8143!9m1!1b1!16s%2Fg%2F11sx4mh4c8?entry=ttu&g_ep=EgoyMDI1MDMxMi4wIKXMDSoASAFQAw%3D%3D";
-  const googleMapsReviewUrl = "https://search.google.com/local/writereview?placeid=ChIJIZskLntJQg0R6Ebn55NNvs8"
-
+  const googleMapsReviewUrl = "https://www.google.es/maps/place/Pavimentos+Alin/@35.225731,-17.424399,5z/data=!4m8!3m7!1s0xd42497b2e249b21:0xcfbe4d93e7e746e8!8m2!3d35.67445!4d-6.8143!9m1!1b1!16s%2Fg%2F11sx4mh4c8?entry=ttu&g_ep=EgoyMDI1MDMxMi4wIKXMDSoASAFQAw%3D%3D";
 
   return (
     <section className="bg-gray-100 text-center p-0 border-r border-l pt-8 pb-4 pl-8 pr-8 shadow-md relative">
       <div className="flex justify-between items-center mb-6">
         <h3 className="text-3xl font-bold">Opiniones de los clientes</h3>
-        <ReviewsSummary rating={reviewsData.place_info.rating} totalReviews={reviewsData.place_info.reviews} />
+        <ReviewsSummary rating={reviewsData.rating} totalReviews={reviewsData.user_ratings_total} />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {currentReviews.map((review, index) => (
-
-          <Card key={index}
-            onClick={() => window.open(review.link, "_blank", "noopener,noreferrer")}
-            className="shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out bg-white cursor-pointer rounded-xl p-4 flex flex-col h-full">
+          <Card key={index} className="shadow-lg rounded-xl p-4 flex flex-col h-full bg-white">
             <CardContent className="flex flex-col h-full">
               <div className="flex items-center gap-4">
                 <img
-                  src={review.user.thumbnail || "/default-user.png"}
-                  alt={review.user.name || "Imagen no encontrada"}
+                  src={review.profile_photo_url || "/default-user.png"}
+                  alt={review.author_name || "Usuario desconocido"}
                   className="w-12 h-12 rounded-full border"
-                  referrerPolicy="no-referrer"
                 />
                 <div>
-                  <h3 className="text-lg font-semibold">{review.user.name || "Anónimo"}</h3>
-                  <StarRating rating={review.rating || 5} />
-                  <p className="text-xs text-gray-500">{review.date || "Fecha desconocida"}</p>
+                  <h3 className="text-lg font-semibold">{review.author_name || "Anónimo"}</h3>
+                  <StarRating rating={review.rating || 0} />
+                  <p className="text-xs text-gray-500">{review.relative_time_description || "Fecha desconocida"}</p>
                 </div>
               </div>
-              <p
-                className="text-sm text-gray-600 mt-2 flex-grow text-left overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
-                style={{
-                  maxHeight: "15rem",
-                  lineHeight: "1.4rem",
-                  scrollbarWidth: "thin",        // Firefox
-                  scrollbarColor: "#999 transparent", // Firefox
-                }}
-              >
-                {review.snippet || "Sin comentario."}
-              </p>
-
-              {review.images && review.images.length > 0 && (
-                <div className="mt-4 flex flex-wrap">
-                  {review.images.map((image, i) => (
+              <p className="text-gray-600 mt-2 flex-grow">{review.text || "Sin comentario."}</p>
+              {review.photos && review.photos.length > 0 && (
+                <div className="mt-4 flex gap-2">
+                  {review.photos.map((photo, i) => (
                     <img
                       key={i}
-                      src={image || "/placeholder.jpg"}
-                      alt={`${review.user?.name || 'Cliente'} foto: ${i + 1}`}
-                      className="w-16 h-16 object-cover border"
-                      referrerPolicy="no-referrer"
+                      src={photo.photo_reference ? `https://example.com/photo/${photo.photo_reference}` : "/placeholder.jpg"}
+                      alt="Review Image"
+                      className="w-16 h-16 object-cover rounded-lg border"
                     />
                   ))}
                 </div>
               )}
             </CardContent>
           </Card>
-
         ))}
       </div>
 
